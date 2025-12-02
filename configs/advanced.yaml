@@ -1,0 +1,50 @@
+# Advanced configuration for poetry generation system
+
+model:
+  name: "gpt2-medium"
+  max_length: 200
+  temperature: 0.8
+  top_p: 0.9
+  top_k: 50
+  repetition_penalty: 1.2
+  no_repeat_ngram_size: 3
+  do_sample: true
+  pad_token_id: null
+
+training:
+  batch_size: 4
+  learning_rate: 3e-5
+  num_epochs: 5
+  warmup_steps: 200
+  max_grad_norm: 1.0
+  gradient_accumulation_steps: 2
+  save_steps: 250
+  eval_steps: 125
+  logging_steps: 25
+
+data:
+  dataset_name: "advanced_poetry_dataset"
+  max_length: 150
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  cache_dir: "./data/cache"
+
+evaluation:
+  metrics: ["perplexity", "bleu", "rouge", "bert_score", "diversity"]
+  num_samples: 200
+  max_eval_length: 150
+
+paths:
+  data_dir: "./data"
+  output_dir: "./outputs"
+  checkpoint_dir: "./checkpoints"
+  log_dir: "./logs"
+
+device:
+  auto_detect: true
+  device_type: "auto"
+
+logging:
+  level: "DEBUG"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
